@@ -3,11 +3,12 @@
 <head>
     <title>Gabiley Transport System</title>
     <style>
-        /* This makes it responsive and clean */
         body { font-family: sans-serif; padding: 20px; max-width: 500px; margin: auto; background: #f0f0f0; }
         .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        input, select, button { width: 100%; padding: 10px; margin: 10px 0; display: block; }
-        button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; display: block; box-sizing: border-box; }
+        button { background-color: #27ae60; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #219150; }
+        h3 { color: #2c3e50; border-top: 1px solid #eee; padding-top: 10px; }
     </style>
 </head>
 <body>
@@ -15,39 +16,48 @@
     <div class="container">
         <h2>Gabiley Transport</h2>
         
-        <!-- Inputs for the system -->
-        <input type="text" id="driverName" placeholder="Enter Driver Name">
+        <input type="text" id="userName" placeholder="Your Name (Passenger)">
+        
+        <input type="number" id="userPhone" placeholder="Your Phone Number">
+
+        <select id="vehicleType">
+            <option value="Bus">Bus (Public) 25k </option>
+            <option value="Private Car">Private Car 35k </option>
+            <option value="Truck">Truck (Cargo) 50k</option>
+        </select>
         
         <select id="routeSelect">
             <option value="Gabiley to Hargeisa">Gabiley to Hargeisa</option>
             <option value="Gabiley to Wajaale">Gabiley to Wajaale</option>
+            <option value="Gabiley to Hargeisa">Gabiley to kalabaydh</option>
+            <option value="Gabiley to Hargeisa">Gabiley to burco</option>
+            <option value="Gabiley to Hargeisa">Gabiley to borama</option>
         </select>
 
-        <button onclick="recordTrip()">Record Trip</button>
+        <button onclick="recordTrip()">Register Trip</button>
 
-        <!-- Where the result shows up -->
         <h3 id="displayArea"></h3>
     </div>
 
     <script>
         function recordTrip() {
-            // 1. Get values from the inputs
-            // Note: IDs are case-sensitive (must match exactly)
-            let driver = document.getElementById("driverName").value;
+            let user = document.getElementById("userName").value;
+            let phone = document.getElementById("userPhone").value;
+            let vehicle = document.getElementById("vehicleType").value;
             let route = document.getElementById("routeSelect").value;
 
-            // 2. Simple logic to check if input is empty
-            if (driver === "") {
-                alert("Please enter a driver name");
+            if (user === "" || phone === "") {
+                alert("Please fill in all details!");
                 return;
             }
 
-            // 3. Display the result on the screen (the "Live" part)
             document.getElementById("displayArea").innerHTML = 
-                "Trip Registered: " + driver + " is driving to " + route;
+                "<strong>Success! Fadlan Hore U Kaalay!</strong><br>" + 
+                "Passenger: " + user + " (" + phone + ")<br>" +
+                "Vehicle: " + vehicle + "<br>" +
+                "Route: " + route;
 
-            // 4. Console log (Good for showing teachers you know debugging)
-            console.log("Trip saved for: " + driver);
+            console.log("New booking for: " + user);
         }
     </script>
 
